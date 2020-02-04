@@ -21,12 +21,12 @@ bucket = client.get_bucket(GCLOUD_BUCKET_RESUMES)
 files_dir = os.path.join(os.path.dirname(__file__), 'files')
 
 # start downloading!
-user_id = 1706
-# try:
-blob = bucket.get_blob(os.path.join(str(user_id), 'resume.pdf'))
-with open(os.path.join(files_dir, str(user_id)+'.pdf'), 'wb+') as file_obj:
-    blob.download_to_file(file_obj)
-    file_obj.close()
-# blob.download_to_filename("1707.pdf")
-# except:
-#     print("Could not retrieve source file from bucket, user id", user_id)
+user_id = 1707
+try:
+    blob = bucket.get_blob(os.path.join(str(user_id), 'resume.pdf'))
+    file_name = str(user_id)+'.pdf'
+    with open(os.path.join(files_dir, file_name), 'wb+') as file_obj:
+        blob.download_to_file(file_obj)
+        file_obj.close()
+except:
+    print("Could not retrieve source file from bucket, user id", user_id)
